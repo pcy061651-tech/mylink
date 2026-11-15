@@ -3,7 +3,7 @@
 > **Linktree 스타일의 세련된 모던 반응형 개인 링크 모음 서비스**  
 > 대학교 웹 프로그래밍 과제 프로젝트
 
-[![Deploy MyLink to GitHub Pages](https://github.com/OWNER/mylink/actions/workflows/deploy.yml/badge.svg)](https://github.com/OWNER/mylink/actions)
+[![Deploy MyLink to GitHub Pages](https://github.com/pcy061651-tech/mylink/actions/workflows/deploy.yml/badge.svg)](https://github.com/pcy061651-tech/mylink)
 ![Node.js](https://img.shields.io/badge/Node.js-26.x-339933?logo=node.js&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-8.x-646CFF?logo=vite&logoColor=white)
 ![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-222222?logo=github&logoColor=white)
@@ -11,8 +11,8 @@
 ---
 
 ## 📌 1. 과제 제출 정보
-- **GitHub 저장소 URL:** `https://github.com/[사용자이름]/mylink`
-- **MyLink 배포 사이트 URL:** `https://[사용자이름].github.io/mylink/`
+- **GitHub 저장소 URL:** https://github.com/pcy061651-tech/mylink
+- **MyLink 배포 사이트 URL:** https://pcy061651-tech.github.io/mylink/
 
 ---
 
