@@ -1,0 +1,644 @@
+/* ==========================================================================
+   MyLink - Modern Linktree Style Profile Stylesheet
+   Crafted with modern CSS variables, responsive design, and smooth animations
+   ========================================================================== */
+
+/* 1. 디자인 시스템 토큰 (CSS 변수) */
+:root {
+  /* 라이트 모드 컬러 팔레트 */
+  --bg-primary: #f8fafc;
+  --bg-secondary: #ffffff;
+  --bg-card: rgba(255, 255, 255, 0.78);
+  --bg-card-hover: rgba(255, 255, 255, 0.95);
+  --bg-btn: #ffffff;
+  --bg-btn-hover: #f1f5f9;
+  --bg-btn-disabled: #f1f5f9;
+
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --text-disabled: #94a3b8;
+
+  --border-subtle: rgba(226, 232, 240, 0.85);
+  --border-focus: #6366f1;
+
+  --accent-primary: #6366f1;
+  --accent-hover: #4f46e5;
+  --accent-glow: rgba(99, 102, 241, 0.25);
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+  --shadow-btn: 0 4px 14px 0 rgba(0, 0, 0, 0.05);
+  --shadow-btn-hover: 0 10px 25px -5px rgba(99, 102, 241, 0.15);
+
+  --blob-1: rgba(99, 102, 241, 0.18);
+  --blob-2: rgba(236, 72, 153, 0.15);
+  --blob-3: rgba(14, 165, 233, 0.15);
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+
+  --font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --transition-fast: 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* 다크 모드 토큰 오버라이드 */
+html.dark {
+  --bg-primary: #090d16;
+  --bg-secondary: #0f172a;
+  --bg-card: rgba(15, 23, 42, 0.72);
+  --bg-card-hover: rgba(30, 41, 59, 0.88);
+  --bg-btn: rgba(30, 41, 59, 0.6);
+  --bg-btn-hover: rgba(51, 65, 85, 0.8);
+  --bg-btn-disabled: rgba(30, 41, 59, 0.3);
+
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #64748b;
+  --text-disabled: #475569;
+
+  --border-subtle: rgba(255, 255, 255, 0.09);
+  --border-focus: #818cf8;
+
+  --accent-primary: #818cf8;
+  --accent-hover: #a5b4fc;
+  --accent-glow: rgba(129, 140, 248, 0.35);
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 12px 24px -4px rgba(0, 0, 0, 0.7);
+  --shadow-btn: 0 4px 14px 0 rgba(0, 0, 0, 0.4);
+  --shadow-btn-hover: 0 10px 30px -5px rgba(129, 140, 248, 0.25);
+
+  --blob-1: rgba(99, 102, 241, 0.22);
+  --blob-2: rgba(236, 72, 153, 0.18);
+  --blob-3: rgba(14, 165, 233, 0.18);
+}
+
+/* 2. 베이스 리셋 */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  font-family: var(--font-family);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color var(--transition-normal), color var(--transition-normal);
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* 3. 배경 오로라 블러 효과 */
+.bg-decoration {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.8;
+  animation: float 20s infinite alternate ease-in-out;
+}
+
+.blob-1 {
+  width: 420px;
+  height: 420px;
+  background: var(--blob-1);
+  top: -80px;
+  left: 50%;
+  transform: translateX(-65%);
+}
+
+.blob-2 {
+  width: 360px;
+  height: 360px;
+  background: var(--blob-2);
+  top: 35%;
+  right: -60px;
+  animation-duration: 25s;
+  animation-delay: -5s;
+}
+
+.blob-3 {
+  width: 400px;
+  height: 400px;
+  background: var(--blob-3);
+  bottom: -60px;
+  left: -60px;
+  animation-duration: 22s;
+  animation-delay: -10s;
+}
+
+@keyframes float {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(30px, 40px) scale(1.08);
+  }
+  100% {
+    transform: translate(-20px, 20px) scale(0.95);
+  }
+}
+
+/* 4. 레이아웃 래퍼 (모바일 최적화) */
+.app-container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 3rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* 5. 상단 유틸리티 바 */
+.top-nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+}
+
+.nav-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 0.85rem;
+  background-color: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  font-weight: 500;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-fast);
+}
+
+.nav-action-btn:hover {
+  background-color: var(--bg-card-hover);
+  color: var(--text-primary);
+  border-color: var(--accent-primary);
+  transform: translateY(-1px);
+}
+
+.nav-action-btn.icon-only {
+  padding: 0.5rem;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  justify-content: center;
+}
+
+.icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+}
+
+/* 6. 메인 프로필 카드 */
+.profile-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* 원형 아바타 */
+.avatar-wrapper {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  margin-bottom: 1.25rem;
+}
+
+.avatar-ring {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6366f1, #a855f7, #ec4899);
+  opacity: 0.85;
+  transition: transform var(--transition-bounce), opacity var(--transition-fast);
+}
+
+.avatar-wrapper:hover .avatar-ring {
+  transform: scale(1.06) rotate(8deg);
+  opacity: 1;
+}
+
+.avatar-img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3.5px solid var(--bg-primary);
+  background-color: var(--bg-secondary);
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition-bounce);
+}
+
+.avatar-wrapper:hover .avatar-img {
+  transform: scale(1.02);
+}
+
+.avatar-badge {
+  position: absolute;
+  bottom: 4px;
+  right: 6px;
+  width: 18px;
+  height: 18px;
+  background-color: #10b981;
+  border: 3px solid var(--bg-primary);
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+}
+
+/* 프로필 텍스트 */
+.profile-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  margin-bottom: 1.75rem;
+}
+
+.badge-wrapper {
+  margin-bottom: 0.2rem;
+}
+
+.profile-tag {
+  display: inline-block;
+  padding: 0.28rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--accent-primary);
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: var(--radius-full);
+}
+
+.profile-name {
+  font-size: 1.65rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  line-height: 1.25;
+}
+
+.profile-bio {
+  font-size: 0.94rem;
+  color: var(--text-secondary);
+  max-width: 380px;
+  white-space: pre-line;
+  line-height: 1.55;
+  margin-top: 0.2rem;
+}
+
+.profile-location {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.15rem;
+}
+
+/* 7. 링크 버튼 섹션 */
+.links-section {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.links-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  width: 100%;
+}
+
+/* 개별 링크 버튼 */
+.link-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.95rem 1.2rem;
+  background-color: var(--bg-card);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-btn);
+  transition: all var(--transition-normal);
+  text-decoration: none;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* 마우스 호버 효과 */
+.link-card:not(.disabled):hover {
+  background-color: var(--bg-card-hover);
+  border-color: var(--accent-primary);
+  box-shadow: var(--shadow-btn-hover);
+  transform: translateY(-3px) scale(1.01);
+}
+
+.link-card:not(.disabled):active {
+  transform: translateY(-1px) scale(0.99);
+}
+
+/* 좌측 콘텐츠 (아이콘 + 텍스트) */
+.link-card-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-align: left;
+}
+
+.link-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform var(--transition-bounce);
+  color: #ffffff;
+}
+
+.link-card:not(.disabled):hover .link-icon-box {
+  transform: scale(1.1) rotate(4deg);
+}
+
+.link-text-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.link-title {
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+.link-subtitle {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  line-height: 1.2;
+}
+
+/* 우측 액션 (뱃지 + 화살표) */
+.link-card-right {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--text-muted);
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.link-card:not(.disabled):hover .link-card-right {
+  color: var(--accent-primary);
+  transform: translateX(2px);
+}
+
+.link-badge {
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 0.2rem 0.5rem;
+  background-color: rgba(148, 163, 184, 0.15);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+}
+
+/* 비활성화 링크 스타일 (주소 미입력 시) */
+.link-card.disabled {
+  opacity: 0.58;
+  cursor: not-allowed;
+  filter: grayscale(0.2);
+  background-color: var(--bg-btn-disabled);
+}
+
+.link-card.disabled .link-icon-box {
+  opacity: 0.7;
+}
+
+.link-card.disabled .status-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--text-disabled);
+  background-color: rgba(148, 163, 184, 0.18);
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-sm);
+}
+
+/* 8. 하단 공유 / URL 복사 카드 */
+.share-card {
+  width: 100%;
+  padding: 1.1rem 1.25rem;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(236, 72, 153, 0.08));
+  border: 1px dashed var(--accent-primary);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.share-info {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  gap: 0.2rem;
+}
+
+.share-title {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.share-desc {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.share-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem 0.95rem;
+  background-color: var(--accent-primary);
+  color: #ffffff;
+  border-radius: var(--radius-md);
+  font-size: 0.82rem;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 4px 10px rgba(99, 102, 241, 0.3);
+  transition: all var(--transition-fast);
+}
+
+.share-copy-btn:hover {
+  background-color: var(--accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(99, 102, 241, 0.4);
+}
+
+.share-copy-btn:active {
+  transform: translateY(0);
+}
+
+/* 9. 푸터 */
+.app-footer {
+  margin-top: auto;
+  padding-top: 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.footer-copy {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.footer-tagline {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  opacity: 0.75;
+}
+
+/* 10. 토스트 알림 메시지 */
+.toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background-color: rgba(15, 23, 42, 0.92);
+  color: #ffffff;
+  padding: 0.7rem 1.25rem;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.86rem;
+  font-weight: 500;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 1000;
+}
+
+html.dark .toast {
+  background-color: rgba(248, 250, 252, 0.95);
+  color: #0f172a;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.toast-icon {
+  display: flex;
+  color: #10b981;
+}
+
+/* 11. 모바일 미디어 쿼리 (미세 조정) */
+@media (max-width: 480px) {
+  .app-container {
+    padding: 1.2rem 1rem 2.5rem;
+  }
+
+  .avatar-wrapper {
+    width: 96px;
+    height: 96px;
+  }
+
+  .profile-name {
+    font-size: 1.45rem;
+  }
+
+  .profile-bio {
+    font-size: 0.88rem;
+  }
+
+  .link-card {
+    padding: 0.85rem 1rem;
+  }
+
+  .link-icon-box {
+    width: 40px;
+    height: 40px;
+  }
+
+  .link-title {
+    font-size: 0.95rem;
+  }
+
+  .share-card {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .share-info {
+    text-align: center;
+  }
+
+  .share-copy-btn {
+    justify-content: center;
+  }
+}
