@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    
+    <!-- 기본 메타 태그 -->
+    <title>MyLink - 나만의 링크 모음</title>
+    <meta name="description" content="나를 표현하는 모든 링크를 한곳에서 만나보세요. 개인 프로필 & SNS 모음 페이지 MyLink" />
+    <meta name="author" content="MyLink" />
+    
+    <!-- Open Graph (SNS 공유 미리보기) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="MyLink - 나만의 프로필 링크 모음" />
+    <meta property="og:description" content="Instagram, YouTube, GitHub, Email을 한곳에서 확인하세요." />
+    <meta property="og:image" content="./avatar.svg" />
+    
+    <!-- 파비콘 -->
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    
+    <!-- 프리미엄 한글/영문 폰트 (Pretendard) -->
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+
+    <!-- 테마 FOUC(깜빡임) 방지 초기화 스크립트 -->
+    <script>
+      (function() {
+        const savedTheme = localStorage.getItem('mylink-theme');
+        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (savedTheme === 'dark' || (!savedTheme && systemDark)) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      })();
+    </script>
+    <script type="module" crossorigin src="/mylink/assets/index-lKNbUOr4.js"></script>
+    <link rel="stylesheet" crossorigin href="/mylink/assets/index-CtEbxXQE.css">
+  </head>
+  <body>
+    <!-- 배경 데코레이션 블러 그라디언트 -->
+    <div class="bg-decoration" aria-hidden="true">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="blob blob-3"></div>
+    </div>
+
+    <!-- 메인 래퍼 (모바일 중심 반응형 컨테이너) -->
+    <div class="app-container">
+      
+      <!-- 상단 유틸리티 바 (테마 토글 & 주소 복사) -->
+      <header class="top-nav">
+        <button id="copy-share-btn" class="nav-action-btn" aria-label="내 마이링크 주소 복사" title="링크 주소 복사">
+          <span class="icon-wrap" id="copy-share-icon"></span>
+          <span class="btn-label">링크 복사</span>
+        </button>
+
+        <button id="theme-toggle-btn" class="nav-action-btn icon-only" aria-label="테마 전환" title="다크/라이트 모드 전환">
+          <span class="icon-wrap" id="theme-icon"></span>
+        </button>
+      </header>
+
+      <!-- 프로필 섹션 -->
+      <main class="profile-card">
+        <!-- 원형 프로필 이미지 -->
+        <div class="avatar-wrapper">
+          <div class="avatar-ring"></div>
+          <img id="profile-avatar" src="./avatar.svg" alt="프로필 사진" class="avatar-img" />
+          <div class="avatar-badge" title="활동 중"></div>
+        </div>
+
+        <!-- 프로필 정보 -->
+        <div class="profile-details">
+          <div class="badge-wrapper">
+            <span id="profile-badge" class="profile-tag">Student & Developer</span>
+          </div>
+          <h1 id="profile-name" class="profile-name">홍길동</h1>
+          <p id="profile-bio" class="profile-bio">
+            안녕하세요! 일상과 개발 프로젝트를 기록하는 공간입니다. ✨
+          </p>
+          <div id="profile-location" class="profile-location">
+            <span>Seoul, South Korea 📍</span>
+          </div>
+        </div>
+
+        <!-- SNS 링크 버튼 목록 -->
+        <section class="links-section" aria-label="SNS 링크 목록">
+          <div id="links-container" class="links-container">
+            <!-- JavaScript(main.js)에서 config.js를 읽어 동적으로 생성됩니다 -->
+          </div>
+        </section>
+
+        <!-- 하단 바로가기 / 공유 카드 -->
+        <div class="share-card">
+          <div class="share-info">
+            <span class="share-title">나만의 마이링크 만들기</span>
+            <span class="share-desc">이 페이지의 주소를 친구나 SNS 소개글에 추가해 보세요!</span>
+          </div>
+          <button id="bottom-copy-btn" class="share-copy-btn">
+            <span id="bottom-copy-icon"></span>
+            <span>주소 복사</span>
+          </button>
+        </div>
+      </main>
+
+      <!-- 푸터 -->
+      <footer class="app-footer">
+        <p id="footer-copyright" class="footer-copy">© 2026 MyLink. All rights reserved.</p>
+        <p id="footer-tagline" class="footer-tagline">Built with HTML5, CSS3, JS & Vite · Deployed on GitHub Pages</p>
+      </footer>
+    </div>
+
+    <!-- 토스트 알림 (복사 완료 알림 등) -->
+    <div id="toast" class="toast" role="status" aria-live="polite">
+      <span class="toast-icon" id="toast-icon"></span>
+      <span class="toast-message" id="toast-message">클립보드에 복사되었습니다!</span>
+    </div>
+
+    <!-- 스크립트 엔트리포인트 -->
+  </body>
+</html>
